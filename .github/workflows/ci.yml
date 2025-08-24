@@ -25,5 +25,10 @@ jobs:
       - name: Playwright tarayıcılarını kur
         run: npx playwright install --with-deps
 
+      - name: Sunucuyu başlat
+        run: |
+          npm run dev &
+          sleep 5
+
       - name: Testleri çalıştır
         run: npx playwright test
