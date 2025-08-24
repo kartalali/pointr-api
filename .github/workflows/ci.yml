@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kodu klonla
+        uses: actions/checkout@v3
+
+      - name: Node.js kur
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Bağımlılıkları yükle
+        run: npm install
+
+      - name: Playwright tarayıcılarını kur
+        run: npx playwright install --with-deps
+
+      - name: Testleri çalıştır
+        run: npx playwright test
